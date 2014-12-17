@@ -1,0 +1,16 @@
+default: &default
+  region: ap-northeast-1
+  availability_zone: ap-northeast-1a
+  vpc_id: vpc-4c6f2825
+  subnet_id: subnet-456f282c # ap-northeast-1b
+
+ec2_default: &ec2_default
+  <<: *default
+  image_id: ami-4985b048 # Amazon Linux AMI 2014.09.1 (HVM)
+  security_group_ids:
+    - sg-d65d42ba # default
+    - sg-1454ac71 # ssh-login
+  key_name: "mikeda"
+  domain: mikeda.jp. # ホスト名を登録するドメイン
+  iam_instance_profile: "default"
+  ebs_size: 30
