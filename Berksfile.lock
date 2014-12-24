@@ -1,0 +1,12 @@
+DEPENDENCIES
+  mackerel-agent
+    git: https://github.com/mackerelio/cookbook-mackerel-agent.git
+    revision: 0b2cb6315ac4a29cca8b60add9769191cb027f6b
+    tag: v1.0.0
+
+GRAPH
+  apt (2.6.0)
+  mackerel-agent (1.0.0)
+    apt (>= 0.0.0)
+    yum (< 4.0.0)
+  yum (3.5.1)

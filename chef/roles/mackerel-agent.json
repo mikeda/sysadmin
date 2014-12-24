@@ -1,0 +1,14 @@
+{
+  "name": "mackerel-agent",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[mackerel-agent]"
+  ],
+  "default_attributes": {
+    "mackerel-agent": {
+      "conf": {
+        "apikey": "D/EvRy7HBjUob7oQljLeQxxbe6SoCaCKPE77Vy29ass="
+      }
+    }
+  }
+}

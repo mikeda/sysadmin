@@ -1,5 +1,6 @@
 {
   "run_list": [
-    "role[default]"
+    "role[default]",
+    "role[mackerel-agent]"
   ]
 }
