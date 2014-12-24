@@ -2,6 +2,8 @@
   "name": "default",
   "json_class": "Chef::Role",
   "run_list": [
-    "recipe[os_setting]"
+    "recipe[os_setting]",
+    "recipe[yum-mysql-community::mysql56]",
+    "recipe[mysql::client]"
   ]
 }

@@ -1,6 +1,7 @@
 {
   "run_list": [
     "role[default]",
-    "role[mackerel-agent]"
+    "role[mackerel-agent]",
+    "recipe[mysql::server]"
   ]
 }
