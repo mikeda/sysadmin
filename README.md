@@ -14,12 +14,13 @@ sysadmin
 
 ## EC2インスタンス構築手順
 
-#### レポジトリをclone
+#### レポジトリのcloneと、bundler、berkshelfのセットアップ
 
 ```
 $ git clone git@github.com:mikeda/sysadmin.git
 $ cd sysadmin
 $ bundle install --path vendor/bundle
+$ bundle exec berks vendor
 ```
 
 #### AWS SDKを使うためのキー設定
