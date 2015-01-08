@@ -11,6 +11,6 @@ ec2_default: &ec2_default
     - sg-d65d42ba # default
     - sg-1454ac71 # ssh-login
   key_name: "mikeda"
-  domain: mikeda.jp. # ホスト名を登録するドメイン
+  hosted_zone_id: Z3J5MVVWBVNX6B # mikeda.jp
   iam_instance_profile: "default"
   ebs_size: 30

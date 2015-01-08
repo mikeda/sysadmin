@@ -71,7 +71,14 @@ ec2.tags.create(root_volume, 'Name', value: "#{hostname}_root")
 
 ### Route53にレコード追加
 r53 = AWS::Route53.new
-fqdn = hostname + '.' + config['domain']
-hosted_zone = r53.hosted_zones.select { |z| z.name == config['domain'] }.first
-hosted_zone.rrsets.create(fqdn, 'CNAME', ttl: 300, resource_records: [{:value => instance.public_dns_name}])
+hosted_zone = r53.hosted_zones[config['hosted_zone_id']]
+fqdn = hostname + '.' + hosted_zone.name
+hosted_zone.rrsets.create(
+  fqdn,
+  'CNAME',
+  ttl: 300,
+  resource_records: [
+    { value: instance.public_dns_name}
+  ]
+)
 puts "create DNS record : #{fqdn}"
