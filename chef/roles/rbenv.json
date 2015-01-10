@@ -1,0 +1,14 @@
+{
+  "name": "rbenv",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[ruby_build]",
+    "recipe[rbenv::system]"
+  ],
+  "default_attributes": {
+    "rbenv": {
+      "rubies": [ "2.1.5" ],
+      "global": "2.1.5"
+    }
+  }
+}
