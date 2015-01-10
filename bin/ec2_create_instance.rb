@@ -22,6 +22,7 @@ AWS.config(
 ### 初期セットアップ用のuser_dataを作成。インスタンス起動時に実行される
 ### 1. hostnameの設定
 ### 2. timezoneをAzia/Tokyoに変更
+### 3. ssh経由でのsudoを有効化
 user_data = <<END
 #!/bin/bash
 sed -i "s/HOSTNAME=.*/HOSTNAME=#{hostname}/" /etc/sysconfig/network
@@ -29,6 +30,8 @@ hostname #{hostname}
 /etc/init.d/rsyslog restart
 
 /bin/ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+sed -i '/^Defaults.*requiretty$/s/^/#/' /etc/sudoers
 END
 
 ec2 = AWS::EC2.new
