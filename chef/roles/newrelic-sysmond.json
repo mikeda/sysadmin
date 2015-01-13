@@ -1,0 +1,12 @@
+{
+  "name": "newrelic-sysmond",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[newrelic-sysmond]"
+  ],
+  "default_attributes": {
+    "newrelic-sysmond": {
+      "license_key": "c7a1bc5db23d04169371d497c7342f34490d7d85"
+    }
+  }
+}

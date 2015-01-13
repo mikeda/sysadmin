@@ -3,6 +3,7 @@ DEPENDENCIES
     git: https://github.com/mackerelio/cookbook-mackerel-agent.git
     revision: 0b2cb6315ac4a29cca8b60add9769191cb027f6b
     tag: v1.0.0
+  newrelic-sysmond
   rbenv
     git: git://github.com/fnichol/chef-rbenv.git
     revision: f2b53292e810dd2b43f6121f9958f5f29979dcb1
@@ -15,6 +16,9 @@ GRAPH
   mackerel-agent (1.0.0)
     apt (>= 0.0.0)
     yum (< 4.0.0)
+  newrelic-sysmond (2.0.0)
+    apt (>= 1.9.2)
+    yum (>= 3.0)
   rbenv (0.7.2)
     java (> 1.4.0)
     ruby_build (>= 0.0.0)
