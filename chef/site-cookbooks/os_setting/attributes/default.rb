@@ -1,5 +1,4 @@
 default[:os_setting][:packages] = %w(
-  sysstat
   dstat
   tmux
   tree
@@ -7,5 +6,4 @@ default[:os_setting][:packages] = %w(
   ftp
   nmap
   lynx
-  mailx
 )

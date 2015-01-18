@@ -5,7 +5,7 @@ default: &default
 
 ec2_default: &ec2_default
   <<: *default
-  image_id: ami-4985b048 # Amazon Linux AMI 2014.09.1 (HVM)
+  image_id: ami-89634988 # CentOS 7 (x86_64) with Updates HVM
   security_group_ids:
     - sg-d65d42ba # default
     - sg-1454ac71 # ssh-login
@@ -13,3 +13,4 @@ ec2_default: &ec2_default
   hosted_zone_id: Z3J5MVVWBVNX6B # mikeda.jp
   iam_instance_profile: "default"
   ebs_size: 30
+  user_data: "sed -i '/^Defaults.*requiretty$/s/^/#/' /etc/sudoers"

@@ -1,9 +1,7 @@
 {
   "run_list": [
     "role[default]",
-    "role[rbenv]",
-    "role[mackerel-agent]",
-    "recipe[mysql::server]"
+    "role[mackerel-agent]"
   ],
   "automatic": {
     "ipaddress": "tmp-test01.mikeda.jp"

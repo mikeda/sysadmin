@@ -3,8 +3,15 @@
   "json_class": "Chef::Role",
   "run_list": [
     "recipe[os_setting]",
+    "recipe[selinux::disabled]",
+    "recipe[yum-epel]",
     "recipe[yum-mysql-community::mysql56]",
     "recipe[mysql::client]",
-    "role[newrelic-sysmond]"
-  ]
+    "recipe[newrelic::sysmond]"
+  ],
+  "default_attributes": {
+    "newrelic": {
+      "license_key": "a890ae6baeb9bf6c3897d6758b2f8abe98451558"
+    }
+  }
 }

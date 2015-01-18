@@ -1,6 +1,6 @@
-bash 'install Development Tools' do
+bash 'install Base and Development Tools' do
   code <<-EOC
-    yum -y groupinstall 'Development Tools' 'Development Libraries'
+    yum -y groupinstall Base 'Development Tools'
   EOC
   not_if 'rpm -q gcc'
 end
