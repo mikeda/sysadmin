@@ -27,7 +27,7 @@ instance = ec2.instances.create(
   instance_type:   instance_type,
   key_name:        config['key_name'],
   subnet:          config['subnet_id'],
-  user_data:       config['user_data'],
+  user_data:       File.read(config['user_data_script']),
   security_group_ids: config['security_group_ids'],
   iam_instance_profile: config['iam_instance_profile'],
   block_device_mappings: [

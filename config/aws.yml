@@ -13,4 +13,4 @@ ec2_default: &ec2_default
   hosted_zone_id: Z3J5MVVWBVNX6B # mikeda.jp
   iam_instance_profile: "default"
   ebs_size: 30
-  user_data: "sed -i '/^Defaults.*requiretty$/s/^/#/' /etc/sudoers"
+  user_data_script: "bin/useradd_mikeda.sh"
