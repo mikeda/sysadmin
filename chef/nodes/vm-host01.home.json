@@ -1,0 +1,10 @@
+{
+  "run_list": [
+    "role[default]",
+    "recipe[kvm]",
+    "recipe[kvm::kickstart]"
+  ],
+  "automatic": {
+    "ipaddress": "vm-host01.home"
+  }
+}

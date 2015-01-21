@@ -1,4 +1,4 @@
-package 'httpd24'
+package 'httpd'
 
 directory '/var/log/httpd/' do
   mode 0755
