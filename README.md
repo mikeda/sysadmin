@@ -1,20 +1,19 @@
 sysadmin
 ==================
 
-個人のAWS管理用のスクリプトとかchefのcookbookとか
-
+個人インフラの管理
 
 * 対応プラットフォーム
-  * 物理サーバ(KVMホスト)
-  * KVMゲスト
+  * KVM(自宅サーバ)
   * EC2
   * Vagrant
 * CentOS7
 * chef
+* 操作ユーザはmikedaで統一
 
 ## 構築手順
 
-### レポジトリのcloneと、bundler、berkshelfのセットアップ
+### レポジトリの初期化
 
 ```
 $ git clone git@github.com:mikeda/sysadmin.git
@@ -27,19 +26,16 @@ $ bundle exec berks vendor
 
 #### AWS
 
-スクリプトでインスタンス作成。
-引数はホスト名、config/aws.ymlで指定したrole、インスタンスサイズ。
-
 ```
 $ export AWS_ACCESS_KEY_ID="XXXX"
 $ export AWS_SECRET_ACCESS_KEY="XXXXXXXX"
 $ bundle exec bin/ec2_create_instance.rb test05 ec2_default m3.large
 ```
 
-内部では以下を実行
+引数はホスト名、config/aws.ymlで指定したrole、インスタンスサイズ。
 
-* インスタンス作成
-* OSの初期設定(hostname、Timezone)
+インスタンス作成、共通のOS初期化処理以外にこのへんも実行。
+
 * インスタンス、EBSのNameタグを設定
 * EIPの取得とアサイン
 * Route53にレコードを作成
@@ -64,10 +60,7 @@ $ sudo su -
 # ~/bin/vm_create.sh test04 192.168.1.104 1 2048 5
 ```
 
-
 ### OS設定、MWセットアップ
-
-chefのnode定義を作成
 
 chef-solo実行
 
