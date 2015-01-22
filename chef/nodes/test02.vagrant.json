@@ -3,6 +3,6 @@
     "role[default]"
   ],
   "automatic": {
-    "ipaddress": "app02.vagrant"
+    "ipaddress": "test02.vagrant"
   }
 }

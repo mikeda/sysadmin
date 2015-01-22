@@ -1,0 +1,8 @@
+{
+  "name": "kvm-host",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[kvm]",
+    "recipe[kvm::kickstart]"
+  ]
+}

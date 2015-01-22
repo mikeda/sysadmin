@@ -1,0 +1,9 @@
+{
+  "run_list": [
+    "role[default]",
+    "role[kvm-host]"
+  ],
+  "automatic": {
+    "ipaddress": "kvm-host01.home"
+  }
+}

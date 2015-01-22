@@ -6,12 +6,12 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision 'shell', path: 'bin/useradd_mikeda.sh'
 
-  config.vm.define :app01 do |node|
-    node.vm.network :private_network, ip: '192.168.2.11'
-    node.vm.network :forwarded_port, host: 8001, guest: 8000
+  config.vm.define :test01 do |c|
+    c.vm.network :private_network, ip: '192.168.2.11'
+    c.vm.network :forwarded_port, host: 8001, guest: 80
   end
 
-  config.vm.define :app02 do |node|
-    node.vm.network :private_network, ip: '192.168.2.12'
+  config.vm.define :test02 do |c|
+    c.vm.network :private_network, ip: '192.168.2.12'
   end
 end

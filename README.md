@@ -24,6 +24,26 @@ $ bundle exec berks vendor chef/cookbooks
 
 ### サーバ作成
 
+### Vagrant
+
+```
+$ vim Vagrantfile
+...
+  config.vm.define :test02 do |c|
+    c.vm.network :private_network, ip: '192.168.2.12'
+  end
+end
+$ vagrant up test02
+```
+
+### KVMゲスト
+
+```
+$ ssh kvm-host.home
+$ sudo su -
+# ~/bin/vm_create.sh test04 192.168.1.104 1 2048 5
+```
+
 #### AWS
 
 ```
@@ -40,32 +60,12 @@ $ bundle exec bin/ec2_create_instance.rb test05 ec2_default m3.large
 * EIPの取得とアサイン
 * Route53にレコードを作成
 
-### Vagrant
-
-```
-$ vim Vagrantfile
-...
-  config.vm.define :app02 do |node|
-    node.vm.network :private_network, ip: '192.168.2.12'
-  end
-end
-$ vagrant up app02
-```
-
-### KVMゲスト
-
-```
-$ ssh vm-host.home
-$ sudo su -
-# ~/bin/vm_create.sh test04 192.168.1.104 1 2048 5
-```
-
 ### OS設定、MWセットアップ
 
 今のところ自宅KVM、vagrant環境についてはホスト名は/etc/hosts管理。
 
 ```
-192.168.1.10 vm-host01.home
+192.168.1.10 kvm-host01.home
 
 192.168.2.11 test01.vagrant
 ```
@@ -73,6 +73,8 @@ $ sudo su -
 chef-solo実行
 
 ```
+$ bundle exec knife solo prepare test05.mikeda.jp.json
+
 $ vim chef/nodes/test05.mikeda.jp.json
 {
   "run_list": [
@@ -83,6 +85,5 @@ $ vim chef/nodes/test05.mikeda.jp.json
   }
 }
 
-$ bundle exec knife solo prepare test05.mikeda.jp.json
 $ bundle exec knife solo cook test05.mikeda.jp.json
 ```

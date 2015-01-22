@@ -1,2 +1,2 @@
-name             'os_setting'
-version          '0.1.0'
+name    'os_setting'
+version '0.1.0'
