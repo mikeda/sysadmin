@@ -1,4 +1,4 @@
 /.bundle/
 /vendor/bundle/
-/berks-cookbooks/
+/chef/cookbooks/
 /.vagrant/

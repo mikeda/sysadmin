@@ -19,7 +19,7 @@ sysadmin
 $ git clone git@github.com:mikeda/sysadmin.git
 $ cd sysadmin
 $ bundle install --path vendor/bundle
-$ bundle exec berks vendor
+$ bundle exec berks vendor chef/cookbooks
 ```
 
 ### サーバ作成

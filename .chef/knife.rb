@@ -1,4 +1,4 @@
-cookbook_path    ["chef/cookbooks", "chef/site-cookbooks", "berks-cookbooks"]
+cookbook_path    ["chef/cookbooks", "chef/site-cookbooks"]
 node_path        "chef/nodes"
 role_path        "chef/roles"
 environment_path "chef/environments"
