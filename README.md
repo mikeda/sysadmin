@@ -62,6 +62,14 @@ $ sudo su -
 
 ### OS設定、MWセットアップ
 
+今のところ自宅KVM、vagrant環境についてはホスト名は/etc/hosts管理。
+
+```
+192.168.1.10 vm-host01.home
+
+192.168.2.11 test01.vagrant
+```
+
 chef-solo実行
 
 ```
