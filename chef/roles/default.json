@@ -3,6 +3,7 @@
   "json_class": "Chef::Role",
   "run_list": [
     "recipe[os_setting]",
+    "recipe[package]",
     "recipe[firewall::disable]",
     "recipe[selinux::disabled]",
     "recipe[yum-epel]",
