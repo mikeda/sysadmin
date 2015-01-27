@@ -1,0 +1,3 @@
+export RBENV_ROOT=<%= node[:rbenv][:install_dir] %>
+export PATH="<%= node[:rbenv][:install_dir] %>/bin:$PATH"
+eval "$(rbenv init -)"

@@ -2,13 +2,14 @@
   "name": "rbenv",
   "json_class": "Chef::Role",
   "run_list": [
-    "recipe[ruby_build]",
-    "recipe[rbenv::system]"
+    "recipe[rbenv::global]"
   ],
   "default_attributes": {
     "rbenv": {
-      "rubies": [ "2.1.5" ],
-      "global": "2.1.5"
+      "install_dir": "/usr/local/rbenv",
+      "versions": [ "2.1.5" ],
+      "global_version": "2.1.5",
+      "gems": [ "bundler", "pry" ]
     }
   }
 }
