@@ -1,0 +1,22 @@
+upstream redmine {
+  server unix:/var/www/redmine/tmp/sockets/unicorn.sock;
+}
+
+server {
+  listen 80;
+  server_name redmine.mikeda.jp;
+
+  access_log /var/log/nginx/redmine.access.log main;
+  error_log  /var/log/nginx/redmine.error.log;
+
+  root /var/www/redmine/public;
+  client_max_body_size 5M;
+
+  location / {
+      if (-f $request_filename) { break; }
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $http_host;
+      proxy_pass http://redmine;
+  }
+}

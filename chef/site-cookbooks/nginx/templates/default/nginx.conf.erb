@@ -1,0 +1,31 @@
+user  nginx;
+worker_processes  <%= node[:nginx][:worker_processes] %>;
+
+error_log  /var/log/nginx/error.log;
+pid        /var/run/nginx.pid;
+
+events {
+  worker_connections  <%= node[:nginx][:worker_connections] %>;
+}
+
+http {
+  include /etc/nginx/mime.types;
+
+  log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for" '
+                    '$request_time';
+
+  server_tokens off;
+  sendfile on;
+  tcp_nopush on;
+  keepalive_timeout 120;
+
+  # 接続元IPをELBのIPではなくクライアントのIPにする
+  proxy_headers_hash_max_size     1024;
+  proxy_headers_hash_bucket_size  256;
+  set_real_ip_from  172.16.0.0/12;
+  real_ip_header    X-Forwarded-For;
+
+  include /etc/nginx/conf.d/*.conf;
+}

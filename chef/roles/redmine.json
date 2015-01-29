@@ -1,0 +1,9 @@
+{
+  "name": "redmine",
+  "json_class": "Chef::Role",
+  "run_list": [
+    "role[rbenv]",
+    "recipe[redmine]",
+    "recipe[nginx::redmine]"
+  ]
+}

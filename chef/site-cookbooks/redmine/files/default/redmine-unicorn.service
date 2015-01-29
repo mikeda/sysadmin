@@ -1,0 +1,15 @@
+[Unit]
+Description=Redmine Unicorn
+
+[Service]
+User=redmine
+WorkingDirectory=/var/www/redmine
+SyslogIdentifier=redmine-unicorn
+PIDFile=/var/www/redmine/tmp/pids/unicorn.pid
+
+ExecStart=/usr/local/rbenv/shims/bundle exec unicorn_rails -c config/unicorn.rb -E production
+ExecStop=/bin/kill -QUIT $MAINPID
+ExecReload=/bin/kill -USR2 $MAINPID
+
+[Install]
+WantedBy=multi-user.target

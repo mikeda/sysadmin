@@ -1,0 +1,1 @@
+default['redmine']['new'] = false
