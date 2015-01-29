@@ -8,6 +8,7 @@
     "recipe[selinux::disabled]",
     "recipe[yum-epel]",
     "recipe[yum-mysql-community::mysql56]",
+    "recipe[munin::client]",
     "recipe[mysql::client]",
     "recipe[newrelic::sysmond]"
   ],
