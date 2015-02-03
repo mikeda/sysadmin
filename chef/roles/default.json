@@ -9,6 +9,7 @@
     "recipe[yum-epel]",
     "recipe[yum-mysql-community::mysql56]",
     "recipe[munin::client]",
+    "recipe[nagios::client]",
     "recipe[mysql::client]",
     "recipe[newrelic::sysmond]"
   ],

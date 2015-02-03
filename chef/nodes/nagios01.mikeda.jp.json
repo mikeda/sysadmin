@@ -1,0 +1,9 @@
+{
+  "run_list": [
+    "role[default]",
+    "recipe[nagios::server]"
+  ],
+  "automatic": {
+    "ipaddress": "nagios01.mikeda.jp"
+  }
+}
