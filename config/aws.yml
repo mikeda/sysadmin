@@ -8,9 +8,18 @@ ec2_default: &ec2_default
   image_id: ami-89634988 # CentOS 7 (x86_64) with Updates HVM
   security_group_ids:
     - sg-d65d42ba # default
-    - sg-1454ac71 # ssh-login
+    - sg-4647ef23 # ssh
   key_name: "mikeda"
   hosted_zone_id: Z3J5MVVWBVNX6B # mikeda.jp
   iam_instance_profile: "default"
   ebs_size: 30
   user_data_script: "bin/useradd_mikeda.sh"
+  public_ip: true
+  elastic_ip: false
+
+web:
+  <<: *ec2_default
+  security_group_ids:
+    - sg-d65d42ba # default
+    - sg-4647ef23 # ssh
+    - sg-7347ef16 # http

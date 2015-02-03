@@ -35,7 +35,8 @@ instance = ec2.instances.create(
       device_name: '/dev/xvda',
       ebs: { volume_size: config['ebs_size'].to_i }
     }
-  ]
+  ],
+  associate_public_ip_address: config['public_ip']
 )
 
 while instance.status != :running
@@ -44,12 +45,14 @@ while instance.status != :running
 end
 
 ### EIPのAllocateとAssociate
-elastic_ip = ec2.elastic_ips.create(vpc: config['vpc_id'])
-# なんかエラーになるのでちょっとsleep
-sleep 5
+if config['elastic_ip']
+  elastic_ip = ec2.elastic_ips.create(vpc: config['vpc_id'])
+  # なんかエラーになるのでちょっとsleep
+  sleep 5
 
-instance.associate_elastic_ip(elastic_ip)
-puts "associated EIP : #{elastic_ip.ip_address}"
+  instance.associate_elastic_ip(elastic_ip)
+  puts "associated EIP : #{elastic_ip.ip_address}"
+end
 
 ### タグ設定
 root_volume = instance.attachments['/dev/xvda'].volume
@@ -58,15 +61,17 @@ ec2.tags.create(instance,    'Name', value: hostname)
 ec2.tags.create(root_volume, 'Name', value: "#{hostname}_root")
 
 ### Route53にレコード追加
-r53 = AWS::Route53.new
-hosted_zone = r53.hosted_zones[config['hosted_zone_id']]
-fqdn = hostname + '.' + hosted_zone.name
-hosted_zone.rrsets.create(
-  fqdn,
-  'CNAME',
-  ttl: 300,
-  resource_records: [
-    { value: instance.public_dns_name}
-  ]
-)
-puts "create DNS record : #{fqdn}"
+if instance.public_dns_name
+  r53 = AWS::Route53.new
+  hosted_zone = r53.hosted_zones[config['hosted_zone_id']]
+  fqdn = hostname + '.' + hosted_zone.name
+  hosted_zone.rrsets.create(
+    fqdn,
+    'CNAME',
+    ttl: 300,
+    resource_records: [
+      { value: instance.public_dns_name}
+    ]
+  )
+  puts "create DNS record : #{fqdn}"
+end
