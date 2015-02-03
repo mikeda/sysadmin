@@ -1,0 +1,9 @@
+{
+  "run_list": [
+    "role[default]",
+    "recipe[munin::server]"
+  ],
+  "automatic": {
+    "ipaddress": "munin01.mikeda.jp"
+  }
+}
